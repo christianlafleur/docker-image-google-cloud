@@ -5,42 +5,22 @@ ENV USER root
 
 RUN apt-get update
 RUN apt-get install -y apt-utils
-RUN apt-get install -y curl gcc
-RUN curl https://sh.rustup.rs -sSf > /tmp/rustup-init.sh
-RUN chmod +x /tmp/rustup-init.sh
-RUN sh /tmp/rustup-init.sh -y
-RUN rm -rf /tmp/rustup-init.sh
-ENV PATH "$PATH:~/.cargo/bin"
+RUN apt-get install -y curl python2.7 python-pip
 
-# Update the local crate index
-RUN ~/.cargo/bin/cargo search
+## Install Google Cloud SDK
+# Create an env var for the correct distribution of Google Cloud SDK.
+ENV CLOUD_SDK_REPO "cloud-sdk-$(lsb_release -c -s)"
+# Add the Cloud SDK distribution URI as a package source
+RUN echo "deb https://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+# Import the Google Cloud public key
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+# Update and install the Cloud SDK with optional components.
+RUN apt-get update
+RUN apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-java google-cloud-sdk-datalab google-cloud-sdk-datastore-emulator google-cloud-sdk-pubsub-emulator google-cloud-sdk-bigtable-emulator kubectl
 
-# Install nightly rust.
-RUN ~/.cargo/bin/rustup install nightly
+# Install App Engine extensions for Python.
+RUN gcloud components install app-engine-python
+RUN gcloud components install app-engine-python-extras
 
-# Initialize a dummy project so that we can pre-download the latest versions of
-# the most popular crates.
-RUN mkdir /tmp/dummy-crate
-WORKDIR /tmp/dummy-crate
-RUN ~/.cargo/bin/cargo init
-
-# Choose a selection of useful crates to download (and all their deps).
-RUN echo "argparse = '*'" >> Cargo.toml
-RUN echo "env_logger = '*'" >> Cargo.toml
-RUN echo "hyper = '*'" >> Cargo.toml
-RUN echo "itertools = '*'" >> Cargo.toml
-RUN echo "log = '*'" >> Cargo.toml
-RUN echo "matches = '*'" >> Cargo.toml
-RUN echo "num = '*'" >> Cargo.toml
-RUN echo "rand = '*'" >> Cargo.toml
-RUN echo "regex = '*'" >> Cargo.toml
-RUN echo "semver = '*'" >> Cargo.toml
-RUN echo "tempdir = '*'" >> Cargo.toml
-RUN echo "time = '*'" >> Cargo.toml
-RUN echo "url = '*'" >> Cargo.toml
-
-# Build the empty project, in order to download the crates.
-RUN ~/.cargo/bin/cargo build
-
-# Clean up the dummy crate
-RUN rm -rf /tmp/dummy-crate
+# Initialize
+RUN gcloud init
