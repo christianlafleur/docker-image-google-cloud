@@ -17,6 +17,3 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 # Update and install the Cloud SDK with optional components.
 RUN apt-get update
 RUN apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-java google-cloud-sdk-datalab google-cloud-sdk-datastore-emulator google-cloud-sdk-pubsub-emulator google-cloud-sdk-bigtable-emulator kubectl
-
-# Initialize
-RUN gcloud init --console-only --skip-diagnostics
