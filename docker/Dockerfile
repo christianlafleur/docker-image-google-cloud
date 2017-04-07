@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+FROM ubuntu:xenial
+ENV CLOUD_SDK_REPO "cloud-sdk-xenial"
 
 USER root
 ENV USER root
@@ -9,7 +10,6 @@ RUN apt-get install -y curl python2.7 python-pip
 
 ## Install Google Cloud SDK
 # Create an env var for the correct distribution of Google Cloud SDK.
-ENV CLOUD_SDK_REPO "cloud-sdk-$(lsb_release -c -s)"
 # Add the Cloud SDK distribution URI as a package source
 RUN echo "deb https://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 # Import the Google Cloud public key
