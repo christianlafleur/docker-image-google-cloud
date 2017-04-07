@@ -4,7 +4,7 @@ USER root
 ENV USER root
 
 RUN apt-get update
-RUN apt-get install -y apt-utils
+RUN apt-get install -y apt-utils apt-transport-https
 RUN apt-get install -y curl python2.7 python-pip
 
 ## Install Google Cloud SDK
