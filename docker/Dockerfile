@@ -19,4 +19,4 @@ RUN apt-get update
 RUN apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-java google-cloud-sdk-datalab google-cloud-sdk-datastore-emulator google-cloud-sdk-pubsub-emulator google-cloud-sdk-bigtable-emulator kubectl
 
 # Initialize
-RUN gcloud init
+RUN gcloud init --console-only --skip-diagnostics
