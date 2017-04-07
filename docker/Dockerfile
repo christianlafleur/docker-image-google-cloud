@@ -18,9 +18,5 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get update
 RUN apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-java google-cloud-sdk-datalab google-cloud-sdk-datastore-emulator google-cloud-sdk-pubsub-emulator google-cloud-sdk-bigtable-emulator kubectl
 
-# Install App Engine extensions for Python.
-RUN gcloud components install app-engine-python
-RUN gcloud components install app-engine-python-extras
-
 # Initialize
 RUN gcloud init
