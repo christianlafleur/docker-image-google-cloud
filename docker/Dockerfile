@@ -4,6 +4,12 @@ ENV CLOUD_SDK_REPO "cloud-sdk-xenial"
 USER root
 ENV USER root
 
+# Install Go
+RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf /tmp/go.tar.gz
+RUN rm /tmp/go.tar.gz
+RUN echo "export PATH=$PATH:/usr/local/go/bin"
+
 RUN apt-get update
 RUN apt-get install -y apt-utils apt-transport-https
 RUN apt-get install -y curl python2.7 python-pip
@@ -18,9 +24,3 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get update
 RUN apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-java google-cloud-sdk-datalab google-cloud-sdk-datastore-emulator google-cloud-sdk-pubsub-emulator google-cloud-sdk-bigtable-emulator kubectl
 RUN gcloud components install app-engine-go
-
-# Install Go
-RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf /tmp/go.tar.gz
-RUN rm /tmp/go.tar.gz
-RUN echo "export PATH=$PATH:/usr/local/go/bin"
