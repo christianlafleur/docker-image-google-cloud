@@ -25,6 +25,6 @@ jobs:
   - get: daily
     trigger: true
   - put: image
-    attempts: 20
+    attempts: 1
     params:
       build: repo/docker
