@@ -4,8 +4,12 @@ USER root
 ENV USER root
 
 RUN apt-get update
-RUN apt-get install -y apt-utils apt-transport-https
-RUN apt-get install -y curl python2.7 python-pip
+RUN apt-get install -y \
+    apt-transport-https \
+    apt-utils \
+    curl \
+    python-pip
+    python2.7 \
 
 # Install Go
 RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz
@@ -25,4 +29,21 @@ ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 RUN gcloud config set disable_usage_reporting true
 
 # Update and install optional components.
-RUN gcloud components install datalab core gsutil app-engine-go cbt gcd-emulator emulator-reverse-proxy docker-credential-gcr app-engine-java kubectl bq cloud-datastore-emulator pubsub-emulator gcloud alpha beta app-engine-python
+RUN gcloud components install \
+  alpha \
+  app-engine-go \
+  app-engine-java \
+  app-engine-python \
+  beta \
+  bq \
+  cbt \
+  cloud-datastore-emulator \
+  core \
+  datalab \
+  docker-credential-gcr \
+  emulator-reverse-proxy \
+  gcd-emulator \
+  gcloud \
+  gsutil \
+  kubectl \
+  pubsub-emulator
