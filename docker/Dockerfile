@@ -18,6 +18,7 @@ RUN curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/chann
 RUN tar -C /usr/local -xzf /tmp/google-cloud-sdk.tar.gz
 RUN rm /tmp/google-cloud-sdk.tar.gz
 RUN /usr/local/google-cloud-sdk/install.sh
+RUN echo "export PATH=$PATH:/usr/local/google-cloud-sdk/bin"
 
 # Update and install optional components.
 RUN gcloud components install datalab core gsutil app-engine-go cbt gc-emulator emulator-reverse-proxy docker-credential-gcr app-engine-java kubectl bq cloud-datastore-emulator pubsub-emulator gcloud alpha beta app-engine-python
