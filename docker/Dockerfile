@@ -25,4 +25,4 @@ ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 RUN gcloud config set disable_usage_reporting true
 
 # Update and install optional components.
-RUN gcloud components install datalab core gsutil app-engine-go cbt gc-emulator emulator-reverse-proxy docker-credential-gcr app-engine-java kubectl bq cloud-datastore-emulator pubsub-emulator gcloud alpha beta app-engine-python
+RUN gcloud components install datalab core gsutil app-engine-go cbt gcd-emulator emulator-reverse-proxy docker-credential-gcr app-engine-java kubectl bq cloud-datastore-emulator pubsub-emulator gcloud alpha beta app-engine-python
