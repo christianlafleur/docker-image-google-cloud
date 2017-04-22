@@ -18,8 +18,7 @@ ENV PATH $PATH:/usr/local/go/bin
 RUN curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-152.0.0-linux-x86_64.tar.gz
 RUN tar -C /usr/local -xzf /tmp/google-cloud-sdk.tar.gz
 RUN rm /tmp/google-cloud-sdk.tar.gz
-RUN /usr/local/google-cloud-sdk/install.sh
-RUN echo "export PATH=$PATH:/usr/local/google-cloud-sdk/bin" /etc/profile
+RUN /usr/local/google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=true
 ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 
 # Opt-out of privacy violations.
