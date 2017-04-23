@@ -8,7 +8,7 @@ RUN apt-get update \
     apt-transport-https \
     apt-utils \
     curl \
-    python-pip
+    python-pip \
     python2.7 \
 
 # Install Go
