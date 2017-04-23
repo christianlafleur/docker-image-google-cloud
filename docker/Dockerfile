@@ -7,7 +7,8 @@ RUN apt-get update \
     && apt-get install -y \
     curl \
     python-pip \
-    python2.7
+    python2.7 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Go
 RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz \
