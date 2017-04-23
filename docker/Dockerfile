@@ -29,7 +29,7 @@ ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 RUN gcloud config set disable_usage_reporting true
 
 # Update and install optional components.
-RUN gcloud components install --quiet \
+RUN gcloud components install \
   alpha \
   app-engine-go \
   app-engine-java \
