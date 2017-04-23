@@ -5,8 +5,6 @@ ENV USER root
 
 RUN apt-get update \
     && apt-get install -y \
-    apt-transport-https \
-    apt-utils \
     curl \
     python-pip \
     python2.7
