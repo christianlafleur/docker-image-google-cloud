@@ -6,6 +6,7 @@ ENV USER root
 RUN apt-get update \
     && apt-get install -y \
     curl \
+    git \
     python-pip \
     python2.7 \
     && rm -rf /var/lib/apt/lists/*
