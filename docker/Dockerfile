@@ -30,8 +30,9 @@ ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 # Opt-out of privacy violations.
 RUN gcloud config set disable_usage_reporting true
 
-# Install optional components and packages.
-RUN gcloud components install --quiet \
+# Update Google Cloud SDK, and install optional components and packages.
+RUN gcloud components update \
+  && gcloud components install --quiet \
   alpha \
   app-engine-go \
   app-engine-java \
