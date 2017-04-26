@@ -15,7 +15,8 @@ RUN apt-get update \
 RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf /tmp/go.tar.gz \
     && rm /tmp/go.tar.gz \
-    && echo "export PATH=$PATH:/usr/local/go/bin" > /etc/profile
+    && echo "export PATH=$PATH:/usr/local/go/bin;" > /etc/profile \
+    && echo "export GOPATH=$HOME/go;" > /etc/profile
 ENV PATH $PATH:/usr/local/go/bin
 
 ## Install Google Cloud SDK
