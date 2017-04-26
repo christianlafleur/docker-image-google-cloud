@@ -18,6 +18,7 @@ RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-a
     && echo "export PATH=$PATH:/usr/local/go/bin;" > /etc/profile \
     && echo "export GOPATH=$HOME/go;" > /etc/profile
 ENV PATH $PATH:/usr/local/go/bin
+ENV GOPATH $HOME/go
 
 ## Install Google Cloud SDK
 RUN curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-152.0.0-linux-x86_64.tar.gz \
@@ -29,7 +30,7 @@ ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 # Opt-out of privacy violations.
 RUN gcloud config set disable_usage_reporting true
 
-# Update and install optional components.
+# Install optional components and packages.
 RUN gcloud components install --quiet \
   alpha \
   app-engine-go \
@@ -47,4 +48,9 @@ RUN gcloud components install --quiet \
   gcloud \
   gsutil \
   kubectl \
-  pubsub-emulator
+  pubsub-emulator ;
+  && go get \
+  google.golang.org/api \
+  google.golang.org/appengine \
+  google.golang.org/cloud \
+  google.golang.org/grpc
