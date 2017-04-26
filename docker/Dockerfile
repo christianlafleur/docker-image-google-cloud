@@ -50,7 +50,5 @@ RUN gcloud components install --quiet \
   kubectl \
   pubsub-emulator \
   && go get \
-  google.golang.org/api \
   google.golang.org/appengine \
-  google.golang.org/cloud \
   google.golang.org/grpc
