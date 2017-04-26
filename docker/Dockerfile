@@ -48,7 +48,7 @@ RUN gcloud components install --quiet \
   gcloud \
   gsutil \
   kubectl \
-  pubsub-emulator ;
+  pubsub-emulator \
   && go get \
   google.golang.org/api \
   google.golang.org/appengine \
