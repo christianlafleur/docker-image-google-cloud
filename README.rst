@@ -1,8 +1,8 @@
-Docker Image: Ubuntu (stable) + Google Cloud SDK
+Docker Image: Alpine (latest) + Google Cloud SDK
 ================================================
 
 This repo contains a Concourse CI pipeline to build a Docker image based on
-Ubuntu (latest stable release). The image contains:
+Alpine (latest release). The image contains:
 
 - Python 2.7
 - curl
