@@ -30,7 +30,7 @@ ENV PATH $PATH:/usr/local/google-cloud-sdk/bin
 # Opt-out of privacy violations.
 RUN gcloud config set disable_usage_reporting true
 
-# Update Google Cloud SDK, and install optional components and packages.
+# Update and install optional components.
 RUN gcloud components update \
   && gcloud components install --quiet \
   alpha \
@@ -49,7 +49,9 @@ RUN gcloud components update \
   gcloud \
   gsutil \
   kubectl \
-  pubsub-emulator \
-  && go get \
+  pubsub-emulator
+
+# Install SDKs for Go.
+RUN go get \
   google.golang.org/appengine \
   google.golang.org/grpc
