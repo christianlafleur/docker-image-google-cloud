@@ -1,5 +1,8 @@
 FROM alpine:latest
 
+USER root
+ENV USER root
+
 RUN apk update \
     && apk add \
     curl \
