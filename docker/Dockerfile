@@ -5,6 +5,7 @@ ENV USER root
 
 RUN apk update \
     && apk add \
+    bash \
     curl \
     git \
     python2 \
