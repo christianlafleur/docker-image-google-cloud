@@ -4,10 +4,10 @@ resources:
   type: git
   source:
     uri: https://github.com/dolph/docker-image-google-cloud
-- name: daily
+- name: weekly
   type: time
   source:
-    interval: 24h
+    interval: 168h
 - name: image
   type: docker-image
   source:
@@ -22,7 +22,7 @@ jobs:
   plan:
   - get: repo
     trigger: true
-  - get: daily
+  - get: weekly
     trigger: true
   - put: image
     attempts: 1

@@ -9,5 +9,4 @@ Ubuntu (latest stable release). The image contains:
 - Google Cloud SDK (with optional components)
 
 This image is `published on Docker Hub
-<https://hub.docker.com/r/dolphm/ubuntu-google-cloud/>`_ and updated
-daily.
+<https://hub.docker.com/r/dolphm/ubuntu-google-cloud/>`_ and updated weekly.
