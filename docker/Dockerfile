@@ -14,18 +14,15 @@ RUN apk update \
 # Install Go
 RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf /tmp/go.tar.gz \
-    && rm /tmp/go.tar.gz \
-    && echo "export PATH=${PATH}:/usr/local/go/bin" >> /etc/profile \
-    && echo "export GOPATH=${HOME}/go" >> /etc/profile
-ENV PATH ${PATH}:/usr/local/go/bin
+    && rm /tmp/go.tar.gz
 ENV GOPATH ${HOME}/go
+ENV PATH ${PATH}:/usr/local/go/bin
 
 ## Install Google Cloud SDK
 RUN curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-152.0.0-linux-x86_64.tar.gz \
     && tar -C /usr/local -xzf /tmp/google-cloud-sdk.tar.gz \
     && rm /tmp/google-cloud-sdk.tar.gz \
-    && /usr/local/google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=true \
-    && echo "export PATH=${PATH}:/usr/local/google-cloud-sdk/bin" >> /etc/profile
+    && /usr/local/google-cloud-sdk/install.sh --quiet --usage-reporting=false --path-update=true
 ENV PATH ${PATH}:/usr/local/google-cloud-sdk/bin
 
 # Opt-out of privacy violations.
