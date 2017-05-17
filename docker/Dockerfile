@@ -1,15 +1,12 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
-USER root
-ENV USER root
-
-RUN apk update \
-    && apk add \
-    bash \
+RUN apt-get update \
+    && apt-get install -y \
     curl \
     git \
-    python2 \
-    py-pip
+    python2.7 \
+    python-pip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Go
 RUN curl -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.4.linux-amd64.tar.gz \
